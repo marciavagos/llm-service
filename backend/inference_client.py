@@ -3,10 +3,15 @@ import requests
 import yaml
 import os
 
-# Load configuration
+# Load configuration with environment variable substitution
 def load_config(config_file):
     with open(config_file, 'r') as file:
-        return yaml.safe_load(file)
+        config = yaml.safe_load(file)
+    
+    # Replace server_url with the value from the environment
+    config['server_url'] = os.environ.get('SERVER_URL', 'http://localhost:5000')  # Default to localhost if not set
+    
+    return config
 
 # CLI Argument Parser
 def parse_args():
