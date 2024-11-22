@@ -1,6 +1,7 @@
 import argparse
 import requests
 import yaml
+import os
 
 # Load configuration
 def load_config(config_file):
@@ -17,8 +18,10 @@ def parse_args():
 
 # Main Request Function
 def send_request(config, model=None, params={}):
+    # Read server URL from environment variable, with a fallback to a default value
     server_url = os.environ.get('SERVER_URL', 'http://localhost:5000')
     url = f"{server_url}/inference"
+    
     payload = {
         'model': model or config['default_model'],
         **params
