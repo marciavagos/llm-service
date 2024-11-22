@@ -1,0 +1,6 @@
+server_url: "http://remote-server:5000"
+default_model: "default_model_name"
+ssh:
+  host: "remote_gpu_server"
+  user: "your_username"
+  key_path: "/path/to/ssh_key"
